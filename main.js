@@ -53,8 +53,6 @@ phina.define('MainScene', {
     this.pumpkinSpown = 30;
     this.batSpown = 50;
     this.time = 0;
-    this.rank = 1;
-    this.total = 1;
   },
 
   update: function(app) {
