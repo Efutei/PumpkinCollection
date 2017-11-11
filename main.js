@@ -124,6 +124,12 @@ phina.define('MainScene', {
       },this
     );
 
+  },
+  getRank: function(self){
+    var script = phina.asset.Script();
+    var src = "https://script.google.com/macros/s/AKfycbzdkuNCnM_J6fZqNPu83kc34tvxtXMNSOzErUSXpQ8tR2S45cc/exec?";
+    src += "score="+this.scoreCounter+"&callback=cameRankData";
+    script.load(src);
   }
 });
 
