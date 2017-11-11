@@ -135,6 +135,11 @@ phina.define('MainScene', {
   }
 });
 
+function cameRankData(json){
+  var newMessage = json.response.rank + " / " + json.response.total;
+  thisResult.messageLabel.text = newMessage;
+}
+
 phina.define('Ghost',{
   superClass: 'Sprite',
 
