@@ -28,6 +28,7 @@ var ASSETS = {
 
 var SCREEN_WIDTH  = 465;
 var SCREEN_HEIGHT = 665;
+var thisResult;
 
 // MainScene クラスを定義
 phina.define('MainScene', {
@@ -69,8 +70,9 @@ phina.define('MainScene', {
       this.ghost.y -= 10;
       this.exit({
         score: this.scoreCounter,
+        message: 'ランキング取得中...',
         hashtags: 'PumColle, phina_js',
-        url: 'http://jsrun.it/FTP/PumColle',
+        url: 'http://jsrun.it/FTP/PumColle'
       });
     }else{
       this.ghost.move(this.marker.x, this.marker.y);
