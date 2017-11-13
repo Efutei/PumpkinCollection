@@ -66,6 +66,7 @@ phina.define('MainScene', {
     if(this.ghost.isDead){
       this.ghost.scaleY = -1;
       this.ghost.y -= 10;
+      this.getRank(this);
       this.exit({
         score: this.scoreCounter,
         message: 'ランキング取得中...',
