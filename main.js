@@ -417,7 +417,7 @@ phina.define('ResultScene', {
 phina.main(function() {
   // アプリケーション生成
   var app = GameApp({
-    title: 'かぼちゃ集め',
+    title: 'PumColle!',
     startLabel: location.search.substr(1).toObject().scene || 'title',
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
