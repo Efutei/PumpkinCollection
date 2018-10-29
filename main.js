@@ -22,13 +22,78 @@ var ASSETS = {
   sound: {
     fire: './sound/matchstick-put-fire1.mp3',
     get: './sound/puyon1.mp3',
-    laughter: './sound/eerie-laughter1.mp3'
+    laughter: './sound/eerie-laughter1.mp3',
+    bgm: './sound/halloween.mp3'
   }
 };
 
 var SCREEN_WIDTH  = 465;
 var SCREEN_HEIGHT = 665;
 var thisResult;
+
+
+phina.define('StartImage', {
+  superClass: 'Sprite',
+  init: function(){
+    this.superInit('pumpkin0', 250, 250);
+    this.x = SCREEN_WIDTH / 2;
+    this.y = SCREEN_WIDTH / 2 + 113;
+  }
+});
+
+phina.define('TitleScene', {
+  superClass: 'DisplayScene',
+  /**
+   * @constructor
+   */
+  init: function(params) {
+    this.superInit(params);
+
+    params = ({}).$safe(params, phina.game.TitleScene.defaults);
+
+    this.backgroundColor = params.backgroundColor;
+    this.startImage = StartImage().addChildTo(this);
+
+    this.fromJSON({
+      children: {
+        titleLabel: {
+          className: 'phina.display.Label',
+          arguments: {
+            text: params.title,
+            fill: params.fontColor,
+            stroke: null,
+            fontSize: 64,
+          },
+          x: this.gridX.center(),
+          y: this.gridY.span(3),
+        }
+      }
+    });
+
+    if (params.exitType === 'touch') {
+      this.fromJSON({
+        children: {
+          touchLabel: {
+            className: 'phina.display.Label',
+            arguments: {
+              text: "TOUCH START",
+              fill: params.fontColor,
+              stroke: null,
+              fontSize: 32,
+            },
+            x: this.gridX.center(),
+            y: this.gridY.span(13.5),
+          },
+        },
+      });
+
+      this.on('pointend', function() {
+        this.exit();
+      });
+    }
+  }
+
+});
 
 // MainScene クラスを定義
 phina.define('MainScene', {
@@ -53,6 +118,7 @@ phina.define('MainScene', {
     this.pumpkinSpown = 30;
     this.batSpown = 50;
     this.time = 0;
+    SoundManager.playMusic('bgm');
   },
 
   update: function(app) {
@@ -67,6 +133,7 @@ phina.define('MainScene', {
       this.ghost.scaleY = -1;
       this.ghost.y -= 10;
       this.getRank(this);
+      SoundManager.stopMusic();
       this.exit({
         score: this.scoreCounter,
         message: 'ランキング取得中...',
