@@ -137,7 +137,7 @@ phina.define('MainScene', {
       this.exit({
         score: this.scoreCounter,
         message: 'ランキング取得中...',
-        hashtags: 'PumColle, phina_js',
+        hashtags: 'PumColle,phina_js',
         url: 'https://efutei.github.io/PumpkinCollection/'
       });
     }else{
